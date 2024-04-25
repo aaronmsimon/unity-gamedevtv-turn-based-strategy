@@ -35,6 +35,6 @@ by [GameDev.tv](https://www.gamedev.tv)
 - IntelliSense Issues?
 - Reminder Of C# Fundamentals (15:02)
 - Accessing Our Projects (4:38)
-- Project Setup (7:56)
+- [Project Setup](https://github.com/aaronmsimon/unity-gamedevtv-turn-based-strategy/commit/5e6c650b3613fd7e11a39767fcbb8d7beb2776e6) (7:56)
 - Render Pipeline and Assets (5:43)
 - Post Processing (12:37)
