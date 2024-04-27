@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Unit : MonoBehaviour
 {
@@ -15,9 +17,9 @@ public class Unit : MonoBehaviour
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetMouseButtonDown(0))
         {
-            Move(new Vector3(4,0,4));
+            Move(MouseWorld.GetPosition());
         }
     }
 
