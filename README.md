@@ -41,7 +41,7 @@ by [GameDev.tv](https://www.gamedev.tv)
 
 ### Unit Movement and Selection
 - Intro - Unit Movement and Selection (1:10)
-- Unit Base Setup (8:11)
+- [Unit Base Setup](https://github.com/aaronmsimon/unity-gamedevtv-turn-based-strategy/commit/d24fa7887e56dbc855c516c3786dcfcbb4fdb898) (8:11)
 - Unit Move (8:01)
 - Mouse Raycast (7:59)
 - Mouse World Position (12:04)
