@@ -3,14 +3,27 @@ using System;
 
 public class UnitActionSystem : MonoBehaviour
 {
+    public static UnitActionSystem Instance { get; private set; }
+
     public event EventHandler OnSelectedUnitChanged;
 
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
 
+    private void Awake()
+    {
+        // Setup singleton pattern
+        if (Instance != null)
+        {
+            Debug.LogError($"There's more than one UnitActionSystem {transform} - {Instance}");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     private void Update()
     {
-
         // Input for Left Mouse Button
         if (Input.GetMouseButtonDown(0))
         {
@@ -48,6 +61,7 @@ public class UnitActionSystem : MonoBehaviour
 
     public Unit GetSelectedUnit()
     {
+        // to keep field private
         return selectedUnit;
     }
 }
