@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseWorld : MonoBehaviour
@@ -8,7 +6,8 @@ public class MouseWorld : MonoBehaviour
 
     [SerializeField] private LayerMask mousePlaneLayerMask;
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
     }
 

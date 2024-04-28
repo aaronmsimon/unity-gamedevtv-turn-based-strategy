@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Unit : MonoBehaviour
 {
     [SerializeField] Animator unitAnimator;
+
     private Vector3 targetPosition;
 
-    private void Update() {
+    private void Update()
+    {
         float stoppingDistance = .1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
@@ -17,8 +15,11 @@ public class Unit : MonoBehaviour
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
+            float rotateSpeed = 10f;
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, rotateSpeed * Time.deltaTime);
             unitAnimator.SetBool("IsWalking", true);
-        } else {
+        } else
+        {
             unitAnimator.SetBool("IsWalking", false);
         }
 
