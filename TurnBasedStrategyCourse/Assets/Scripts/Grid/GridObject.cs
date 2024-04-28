@@ -11,6 +11,6 @@ public class GridObject
 
     public override string ToString()
     {
-        return "<color=#E46252>x</color><color=#FFFFFF> " + gridPosition.x + ",</color> <color=#5E88F5>z</color><color=#FFFFFF> " + gridPosition.z + "</color>";
+        return gridPosition.ToString();
     }
 }

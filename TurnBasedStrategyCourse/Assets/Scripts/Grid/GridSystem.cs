@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class GridSystem
 {
@@ -50,8 +49,6 @@ public class GridSystem
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
                 
                 gridDebugObject.SetGridObject(GetGridObject(gridPosition));
-                TextMeshPro textMeshPro = gridDebugObject.GetComponentInChildren<TextMeshPro>();
-                textMeshPro.text = gridDebugObject.GetGridObject().ToString();
             }
         }
     }
