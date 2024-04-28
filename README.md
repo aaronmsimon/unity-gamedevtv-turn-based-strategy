@@ -58,7 +58,7 @@ by [GameDev.tv](https://www.gamedev.tv)
 ### Grid System & Camera
 - Intro - Grid System and Camera (0:52)
 - Grid System Design (3:54)
-- Grid System (13:45)
+- [Grid System](https://github.com/aaronmsimon/unity-gamedevtv-turn-based-strategy/commit/29304b51feb86cd5508400098fb57dadf9a47a86) (13:45)
 - Grid Object (8:57)
 - Grid Object Debug (6:25)
 - Level Grid (19:17)

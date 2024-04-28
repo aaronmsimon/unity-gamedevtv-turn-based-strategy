@@ -11,6 +11,6 @@ public struct GridPosition
 
     public override string ToString()
     {
-        return "<color=#FF0000>x</color><color=#FFFFFF>: " + x + ",</color> <color=#0000FF>z</color><color=#FFFFFF>: " + z + "</color>";
+        return "<color=#E46252>x</color><color=#FFFFFF> " + x + ",</color> <color=#5E88F5>z</color><color=#FFFFFF> " + z + "</color>";
     }
 }
