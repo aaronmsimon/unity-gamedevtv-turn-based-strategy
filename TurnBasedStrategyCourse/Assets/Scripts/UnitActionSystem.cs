@@ -1,7 +1,10 @@
 using UnityEngine;
+using System;
 
 public class UnitActionSystem : MonoBehaviour
 {
+    public event EventHandler OnSelectedUnitChanged;
+
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
 
@@ -28,11 +31,23 @@ public class UnitActionSystem : MonoBehaviour
         {
             if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
             {
-                selectedUnit = unit;
+                SetSelectedUnit(unit);
                 return true;
             }
         }
 
         return false;
+    }
+
+    private void SetSelectedUnit(Unit unit)
+    {
+        selectedUnit = unit;
+        // ? does a null check and only continues if not null - is equivalent to checking if there are subscribers by checking if it is != null
+        OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public Unit GetSelectedUnit()
+    {
+        return selectedUnit;
     }
 }
