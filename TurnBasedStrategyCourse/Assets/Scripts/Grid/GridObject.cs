@@ -24,6 +24,6 @@ public class GridObject
 
     public override string ToString()
     {
-        return gridPosition.ToString() + "\n" + unit.ToString();
+        return gridPosition.ToString() + "\n" + unit;
     }
 }
