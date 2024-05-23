@@ -106,8 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4174591005233840555}
-  - component: {fileID: 4348721370423706447}
   - component: {fileID: 7808325698106843180}
+  - component: {fileID: 4348721370423706447}
+  - component: {fileID: 7809836327913803878}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -132,22 +133,6 @@ Transform:
   - {fileID: 3821622877530260947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4348721370423706447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5672824814138135619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508265fedd3df33498517facdb4ab6d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 4
-  rotateSpeed: 10
-  stoppingDistance: 0.1
-  unitAnimator: {fileID: 6703550295568198465}
 --- !u!65 &7808325698106843180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -169,6 +154,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35, y: 1.8, z: 0.3}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &4348721370423706447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672824814138135619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508265fedd3df33498517facdb4ab6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7809836327913803878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672824814138135619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b553b2957fe9047af85a8b071a1e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  rotateSpeed: 10
+  stoppingDistance: 0.1
+  unitAnimator: {fileID: 6703550295568198465}
 --- !u!1001 &326810313786668432
 PrefabInstance:
   m_ObjectHideFlags: 0
