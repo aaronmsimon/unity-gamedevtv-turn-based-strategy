@@ -181,6 +181,7 @@ MonoBehaviour:
   moveSpeed: 4
   rotateSpeed: 10
   stoppingDistance: 0.1
+  maxMoveDistance: 4
   unitAnimator: {fileID: 6703550295568198465}
 --- !u!1001 &326810313786668432
 PrefabInstance:

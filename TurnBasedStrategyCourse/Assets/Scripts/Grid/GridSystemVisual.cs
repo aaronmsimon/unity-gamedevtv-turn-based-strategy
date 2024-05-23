@@ -1,12 +1,25 @@
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class GridSystemVisual : MonoBehaviour
 {
+    public static GridSystemVisual Instance { get; private set; }
+
     [SerializeField] private Transform gridSystemVisualSinglePrefab;
 
     private GridSystemVisualSingle[,] gridSystemVisualSingles;
+
+    private void Awake()
+    {
+        // Setup singleton pattern
+        if (Instance != null)
+        {
+            Debug.LogError($"There's more than one GridSystemVisual {transform} - {Instance}");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -26,6 +39,12 @@ public class GridSystemVisual : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // will be refactoring this to only be called when necessary
+        UpdateGridVisual();
+    }
+
     public void HideAllGridPositions()
     {
         foreach (GridSystemVisualSingle gridSystemVisualSingle in gridSystemVisualSingles)
@@ -40,5 +59,13 @@ public class GridSystemVisual : MonoBehaviour
         {
             gridSystemVisualSingles[gridPosition.x, gridPosition.z].Show();
         }
+    }
+
+    private void UpdateGridVisual()
+    {
+        HideAllGridPositions();
+
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+        ShowGridPositionList(selectedUnit.GetMoveAction().GetValidActionGridPositionList());
     }
 }
