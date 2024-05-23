@@ -68,7 +68,7 @@ by [GameDev.tv](https://www.gamedev.tv)
 
 ### Actions & UI
 - Intro - Actions and UI (0:49)
-- Move Action (12:28)
+- [Move Action](https://github.com/aaronmsimon/unity-gamedevtv-turn-based-strategy/commit/59eed8b40f82b6d8096247cdea4a483c10035a6f) (12:28)
 - Move Action Validate (10:49)
 - Grid Visual (15:06)
 - Base Action Class (13:38)
