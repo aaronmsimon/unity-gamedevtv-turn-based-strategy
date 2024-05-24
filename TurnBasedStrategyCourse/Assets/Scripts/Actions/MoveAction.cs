@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAction : MonoBehaviour
+public class MoveAction : BaseAction
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 4f;
@@ -13,11 +13,10 @@ public class MoveAction : MonoBehaviour
     [SerializeField] private Animator unitAnimator;
 
     private Vector3 targetPosition;
-    private Unit unit;
-
-    private void Awake()
+    
+    protected override void Awake()
     {
-        unit = GetComponent<Unit>();
+        base.Awake();
 
         // Setting the starting target to the current position so it doesn't try to move to 0, 0
         targetPosition = transform.position;
@@ -25,29 +24,35 @@ public class MoveAction : MonoBehaviour
 
     private void Update()
     {
+        if (!isActive) return;
+
+        // Get move direction based on the current vs target position
+        Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
         // Move to within a set stopping distance so there's no jittering (though I didn't experience this)
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
-            // Get move direction based on the current vs target position
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
             // Move to the new position
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-            // Rotate based on move direction
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, rotateSpeed * Time.deltaTime);
             // Set animation parameter
             unitAnimator.SetBool("IsWalking", true);
         } else
         {
             // Unset animation parameter if not moving
             unitAnimator.SetBool("IsWalking", false);
+            isActive = false;
         }
+
+        // Rotate based on move direction
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, rotateSpeed * Time.deltaTime);
     }
 
     public void Move(GridPosition gridPosition)
     {
         // Set target position
         this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        isActive = true;
     }
 
     public List<GridPosition> GetValidActionGridPositionList()
