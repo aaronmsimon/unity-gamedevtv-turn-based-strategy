@@ -10,6 +10,7 @@ public class UnitActionSystem : MonoBehaviour
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
 
+    private BaseAction selectedAction;
     private bool isBusy;
 
     private void Awake()
@@ -24,6 +25,11 @@ public class UnitActionSystem : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        SetSelectedUnit(selectedUnit);
+    }
+
     private void Update()
     {
         if (isBusy)
@@ -31,25 +37,34 @@ public class UnitActionSystem : MonoBehaviour
             return;
         }
 
-        // Input for Left Mouse Button
-        if (Input.GetMouseButtonDown(0))
+        if (TryHandleUnitSelection())
         {
-            // Select a unit
-            if (TryHandleUnitSelection()) return;
-
-            // Move selected unit
-            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
-            if (selectedUnit.GetMoveAction().IsValidActionGridPosition(mouseGridPosition))
-            {
-                SetBusy();
-                selectedUnit.GetMoveAction().Move(mouseGridPosition, ClearBusy);
-            }
+            return;
         }
 
-        if (Input.GetMouseButtonDown(1))
+        HandleSelectedAction();
+    }
+
+    private void HandleSelectedAction()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            SetBusy();
-            selectedUnit.GetSpinAction().Spin(ClearBusy);
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+
+            switch (selectedAction)
+            {
+                case MoveAction moveAction:
+                    if (moveAction.IsValidActionGridPosition(mouseGridPosition))
+                    {
+                        SetBusy();
+                        moveAction.Move(mouseGridPosition, ClearBusy);
+                    }
+                    break;
+                case SpinAction spinAction:
+                    SetBusy();
+                    selectedUnit.GetSpinAction().Spin(ClearBusy);
+                    break;
+            }
         }
     }
 
@@ -65,15 +80,18 @@ public class UnitActionSystem : MonoBehaviour
 
     private bool TryHandleUnitSelection()
     {
-        // Set a ray from the screen to the mouse position
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // Shoot a raycast infinite distance to only look for units and update the selected unit if it finds one
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitLayerMask))
+        if (Input.GetMouseButtonDown(0))
         {
-            if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
+            // Set a ray from the screen to the mouse position
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Shoot a raycast infinite distance to only look for units and update the selected unit if it finds one
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitLayerMask))
             {
-                SetSelectedUnit(unit);
-                return true;
+                if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
+                {
+                    SetSelectedUnit(unit);
+                    return true;
+                }
             }
         }
 
@@ -83,8 +101,16 @@ public class UnitActionSystem : MonoBehaviour
     private void SetSelectedUnit(Unit unit)
     {
         selectedUnit = unit;
+        // By design, we will always make sure every unit has a move action (this acts as a default)
+        SetSelectedAction(unit.GetMoveAction());
+
         // ? does a null check and only continues if not null - is equivalent to checking if there are subscribers by checking if it is != null
         OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void SetSelectedAction(BaseAction baseAction)
+    {
+        selectedAction = baseAction;
     }
 
     public Unit GetSelectedUnit()
