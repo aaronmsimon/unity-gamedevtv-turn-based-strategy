@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7808325698106843180}
   - component: {fileID: 4348721370423706447}
   - component: {fileID: 7809836327913803878}
-  - component: {fileID: 8694777053392704233}
+  - component: {fileID: 7377610159470336840}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -184,7 +184,7 @@ MonoBehaviour:
   stoppingDistance: 0.1
   maxMoveDistance: 4
   unitAnimator: {fileID: 6703550295568198465}
---- !u!114 &8694777053392704233
+--- !u!114 &7377610159470336840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
