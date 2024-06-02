@@ -1637,6 +1637,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActionButtonUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7765644750580098179, guid: 19b4e428d745cfa428b85ffc67517d25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8283604954119645898, guid: 19b4e428d745cfa428b85ffc67517d25,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1910,17 +1915,17 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 330585546}
+  - {fileID: 178276536}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1970663385}
   - {fileID: 2705103579178286252}
   - {fileID: 1604336757}
   - {fileID: 37164104}
   - {fileID: 837672581}
   - {fileID: 2002060589}
-  - {fileID: 1250052859}
   - {fileID: 1452981172}
   - {fileID: 1415346620}
-  - {fileID: 178276536}
   - {fileID: 695272306}
   - {fileID: 471901877}
-  - {fileID: 1970663385}
+  - {fileID: 1250052859}
